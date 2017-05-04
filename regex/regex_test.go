@@ -46,6 +46,8 @@ func TestSubexpMap(t *testing.T) {
 			"first":  "16601",
 			"second": "234234",
 		}},
+		{"no second", args{r, "14"}, map[string]string{}},
+		{"nothing", args{r, ""}, map[string]string{}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

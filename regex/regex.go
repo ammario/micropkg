@@ -20,6 +20,9 @@ func SubexpMap(r *regexp.Regexp, target string) map[string]string {
 	matches := r.FindStringSubmatch(target)
 	m := make(map[string]string, len(r.SubexpNames()))
 	for i, name := range r.SubexpNames() {
+		if i > len(matches) { //no more matches
+			return m
+		}
 		if i == 0 { //first subexp is the target
 			continue
 		}
