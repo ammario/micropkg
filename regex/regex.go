@@ -4,7 +4,7 @@ import (
 	"regexp"
 )
 
-//Subexp returns the subexp with name subexp from r or "" if it does not exist
+//Subexp returns the subexp with name subexp from target or "" if it does not exist.
 func Subexp(r *regexp.Regexp, target string, subexp string) (val string) {
 	matches := r.FindStringSubmatch(target)
 	for i, name := range r.SubexpNames() {
