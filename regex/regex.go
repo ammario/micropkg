@@ -8,11 +8,14 @@ import (
 func Subexp(r *regexp.Regexp, target string, subexp string) (val string) {
 	matches := r.FindStringSubmatch(target)
 	for i, name := range r.SubexpNames() {
+		if i > len(matches) {
+			return
+		}
 		if name == subexp {
 			return matches[i]
 		}
 	}
-	return ""
+	return
 }
 
 //SubexpMap returns a map with keys of form subexpName -> value

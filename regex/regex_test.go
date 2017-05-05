@@ -22,6 +22,7 @@ func TestSubexp(t *testing.T) {
 		{"second", args{r, "5345345.911", "second"}, "911"},
 		{"first", args{r, "5345345.911", "first"}, "5345345"},
 		{"none", args{r, "5345345.911", "third"}, ""},
+		{"empty", args{r, "", "first"}, ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
