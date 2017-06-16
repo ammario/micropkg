@@ -3,6 +3,8 @@ package strutil
 
 import (
 	"bytes"
+	"regexp"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -44,4 +46,21 @@ func Ellipsis(str string, maxLen int) string {
 	ret.WriteString("...")
 
 	return ret.String()
+}
+
+var camel = regexp.MustCompile("(^[^A-Z]*|[A-Z]*)([A-Z][^A-Z]+|$)")
+
+// CamelToSnake converts a camel case string to it's snake representation.
+// Taken from https://gist.github.com/regeda/969a067ff4ed6ffa8ed6.
+func CamelToSnake(s string) string {
+	var a []string
+	for _, sub := range camel.FindAllStringSubmatch(s, -1) {
+		if sub[1] != "" {
+			a = append(a, sub[1])
+		}
+		if sub[2] != "" {
+			a = append(a, sub[2])
+		}
+	}
+	return strings.ToLower(strings.Join(a, "_"))
 }
